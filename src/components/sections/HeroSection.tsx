@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,7 +8,7 @@ export function HeroSection() {
     <div 
       className="relative overflow-hidden bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://images.pexels.com/photos/2608353/pexels-photo-2608353.jpeg")',
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://images.pexels.com/photos/31585422/pexels-photo-31585422/free-photo-of-elderly-vendor-at-market-stall-with-grain-bags.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")',
       }}
     >
       <div className="container px-4 py-16 mx-auto sm:px-6 sm:py-24 lg:py-32">
