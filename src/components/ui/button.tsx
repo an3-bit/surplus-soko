@@ -18,6 +18,10 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        sokoGreen: "bg-soko-green text-white hover:bg-soko-green/90",
+        sokoOrange: "bg-soko-orange text-white hover:bg-soko-orange/90",
+        sokoOutlineGreen: "border-2 border-soko-green text-soko-green hover:bg-soko-green/10",
+        sokoOutlineOrange: "border-2 border-soko-orange text-soko-orange hover:bg-soko-orange/10",
       },
       size: {
         default: "h-10 px-4 py-2",

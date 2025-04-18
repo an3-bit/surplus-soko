@@ -15,6 +15,10 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground",
+        sokoGreen:
+          "border-transparent bg-soko-green text-white hover:bg-soko-green/90",
+        sokoOrange:
+          "border-transparent bg-soko-orange text-white hover:bg-soko-orange/90",
       },
     },
     defaultVariants: {

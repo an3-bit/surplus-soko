@@ -52,6 +52,20 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				soko: {
+					green: {
+						light: '#4CAF50',
+						DEFAULT: '#2E7D32',
+						dark: '#1B5E20'
+					},
+					orange: {
+						light: '#FFAB91',
+						DEFAULT: '#F97316',
+						dark: '#E65100'
+					},
+					earth: '#F2FCE2',
+					cream: '#FFF8E1'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
