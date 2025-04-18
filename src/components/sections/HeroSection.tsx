@@ -2,6 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Wheat, Bean, Tomato } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -53,16 +55,39 @@ export function HeroSection() {
             </div>
           </div>
           <div className="relative lg:pl-8">
-            <div className="relative">
-              <img
-                src="https://images.pexels.com/photos/2608353/pexels-photo-2608353.jpeg"
-                alt="Kenyan farmer with produce"
-                className="w-full h-auto rounded-lg shadow-xl object-cover"
-              />
-              <div className="absolute -bottom-4 -right-4 bg-white p-4 rounded-lg shadow-lg">
-                <p className="text-sm font-medium text-gray-900">*384*45#</p>
-                <p className="text-xs text-gray-600">Our USSD code</p>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Card className="bg-white/90 backdrop-blur-sm">
+                <CardHeader className="flex items-center">
+                  <Wheat className="h-12 w-12 text-soko-orange" />
+                  <h3 className="text-xl font-semibold text-center mt-2">Maize</h3>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600 text-center">Premium quality maize from local farmers. Direct from farm to market.</p>
+                  <p className="text-soko-green font-semibold text-center mt-2">KSH 50-80/kg</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm">
+                <CardHeader className="flex items-center">
+                  <Bean className="h-12 w-12 text-soko-orange" />
+                  <h3 className="text-xl font-semibold text-center mt-2">Beans</h3>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600 text-center">Fresh, high-quality beans sourced directly from local farmers.</p>
+                  <p className="text-soko-green font-semibold text-center mt-2">KSH 120-150/kg</p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-white/90 backdrop-blur-sm">
+                <CardHeader className="flex items-center">
+                  <Tomato className="h-12 w-12 text-soko-orange" />
+                  <h3 className="text-xl font-semibold text-center mt-2">Tomatoes</h3>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-gray-600 text-center">Fresh tomatoes harvested daily from our network of farmers.</p>
+                  <p className="text-soko-green font-semibold text-center mt-2">KSH 80-100/kg</p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
