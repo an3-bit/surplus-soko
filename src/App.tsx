@@ -8,6 +8,8 @@ import HowItWorks from "./pages/HowItWorks";
 import Impact from "./pages/Impact";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import Register from "./pages/Register";
+import Support from "./pages/Support";
 
 const queryClient = new QueryClient();
 
@@ -22,7 +24,8 @@ const App = () => (
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/impact" element={<Impact />} />
           <Route path="/about" element={<About />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/register" element={<Register />} />
+          <Route path="/support" element={<Support />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

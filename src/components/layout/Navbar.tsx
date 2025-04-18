@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -30,11 +29,14 @@ export function Navbar() {
           </Link>
         </nav>
         <div className="hidden md:flex md:items-center md:space-x-3">
-          <Button variant="sokoOutlineGreen">Register</Button>
-          <Button variant="sokoGreen">Support</Button>
+          <Link to="/register">
+            <Button variant="sokoOutlineGreen">Register</Button>
+          </Link>
+          <Link to="/support">
+            <Button variant="sokoGreen">Support</Button>
+          </Link>
         </div>
 
-        {/* Mobile menu button */}
         <div className="md:hidden">
           <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -43,7 +45,6 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {isOpen && (
         <div className="md:hidden border-t">
           <div className="container px-4 py-3 mx-auto sm:px-6">
@@ -61,8 +62,12 @@ export function Navbar() {
                 About
               </Link>
               <div className="flex flex-col space-y-2 pt-3 border-t">
-                <Button variant="sokoOutlineGreen" onClick={() => setIsOpen(false)}>Register</Button>
-                <Button variant="sokoGreen" onClick={() => setIsOpen(false)}>Support</Button>
+                <Link to="/register">
+                  <Button variant="sokoOutlineGreen" className="w-full" onClick={() => setIsOpen(false)}>Register</Button>
+                </Link>
+                <Link to="/support">
+                  <Button variant="sokoGreen" className="w-full" onClick={() => setIsOpen(false)}>Support</Button>
+                </Link>
               </div>
             </nav>
           </div>
