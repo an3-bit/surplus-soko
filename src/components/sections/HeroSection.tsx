@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import heroImage from "/placeholder.svg";
+import heroImage from "/pexels-kenyan-farmer.jpg"; // Replace with actual downloaded Pexels image
 
 export function HeroSection() {
   return (
