@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import heroImage from "/pexels-kenyan-farmer.jpg"; // Replace with actual downloaded Pexels image
+import placeholderImage from "/placeholder.svg"; // Using the existing placeholder image
 
 export function HeroSection() {
   return (
@@ -46,7 +46,7 @@ export function HeroSection() {
           <div className="relative lg:pl-8">
             <div className="relative">
               <img
-                src={heroImage}
+                src={placeholderImage}
                 alt="Kenyan farmer with produce"
                 className="w-full h-auto rounded-lg shadow-xl object-cover"
               />
