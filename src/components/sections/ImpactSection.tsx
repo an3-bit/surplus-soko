@@ -1,7 +1,11 @@
-
 import { Badge } from "@/components/ui/badge";
+import { useCountUp } from "@/hooks/useCountUp";
 
 export function ImpactSection() {
+  const lossReduction = useCountUp(35);
+  const incomeIncrease = useCountUp(200);
+  const costReduction = useCountUp(15);
+
   return (
     <section className="py-16 bg-gray-50" id="impact">
       <div className="container px-4 mx-auto sm:px-6">
@@ -16,7 +20,7 @@ export function ImpactSection() {
         <div className="mt-16">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div className="p-6 bg-white border border-gray-100 rounded-lg shadow-sm">
-              <div className="text-3xl font-bold text-soko-green">30-40%</div>
+              <div className="text-3xl font-bold text-soko-green">{lossReduction}%</div>
               <h3 className="mt-4 text-lg font-medium text-gray-900">Post-Harvest Loss Reduction</h3>
               <p className="mt-2 text-sm text-gray-600">
                 Fresh produce previously lost due to poor storage and market access now reaches consumers.
@@ -27,7 +31,7 @@ export function ImpactSection() {
             </div>
 
             <div className="p-6 bg-white border border-gray-100 rounded-lg shadow-sm">
-              <div className="text-3xl font-bold text-soko-orange">2x</div>
+              <div className="text-3xl font-bold text-soko-orange">{incomeIncrease}%</div>
               <h3 className="mt-4 text-lg font-medium text-gray-900">Farmer Income Increase</h3>
               <p className="mt-2 text-sm text-gray-600">
                 Smallholder farmers now earn fair prices by bypassing exploitative middlemen.
@@ -38,7 +42,7 @@ export function ImpactSection() {
             </div>
 
             <div className="p-6 bg-white border border-gray-100 rounded-lg shadow-sm">
-              <div className="text-3xl font-bold text-soko-green">15%</div>
+              <div className="text-3xl font-bold text-soko-green">{costReduction}%</div>
               <h3 className="mt-4 text-lg font-medium text-gray-900">Food Cost Reduction</h3>
               <p className="mt-2 text-sm text-gray-600">
                 Schools, hospitals, and processors source quality produce more efficiently.
