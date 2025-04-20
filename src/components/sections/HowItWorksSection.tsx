@@ -20,7 +20,7 @@ export function HowItWorksSection() {
               <div className="flex items-center justify-center w-12 h-12 mb-4 bg-soko-green/10 text-soko-green rounded-full">
                 <MessageCircle className="w-6 h-6" />
               </div>
-              <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-soko-green flex items-center justify-center text-white font-bold">
+              <div className="absolute top-4 -left-4 w-8 h-8 rounded-full bg-soko-green flex items-center justify-center text-white font-bold shadow-md">
                 1
               </div>
               <h3 className="text-lg font-semibold text-gray-900">List Your Produce</h3>
@@ -37,7 +37,7 @@ export function HowItWorksSection() {
               <div className="flex items-center justify-center w-12 h-12 mb-4 bg-soko-orange/10 text-soko-orange rounded-full">
                 <ShoppingBag className="w-6 h-6" />
               </div>
-              <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-soko-orange flex items-center justify-center text-white font-bold">
+              <div className="absolute top-4 -left-4 w-8 h-8 rounded-full bg-soko-orange flex items-center justify-center text-white font-bold shadow-md">
                 2
               </div>
               <h3 className="text-lg font-semibold text-gray-900">Instant Buyer Alerts</h3>
@@ -54,7 +54,7 @@ export function HowItWorksSection() {
               <div className="flex items-center justify-center w-12 h-12 mb-4 bg-soko-green/10 text-soko-green rounded-full">
                 <Truck className="w-6 h-6" />
               </div>
-              <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-soko-green flex items-center justify-center text-white font-bold">
+              <div className="absolute top-4 -left-4 w-8 h-8 rounded-full bg-soko-green flex items-center justify-center text-white font-bold shadow-md">
                 3
               </div>
               <h3 className="text-lg font-semibold text-gray-900">Secure Payment & Pickup</h3>
@@ -71,7 +71,7 @@ export function HowItWorksSection() {
               <div className="flex items-center justify-center w-12 h-12 mb-4 bg-soko-orange/10 text-soko-orange rounded-full">
                 <CheckCircle className="w-6 h-6" />
               </div>
-              <div className="absolute -top-3 -left-3 w-8 h-8 rounded-full bg-soko-orange flex items-center justify-center text-white font-bold">
+              <div className="absolute top-4 -left-4 w-8 h-8 rounded-full bg-soko-orange flex items-center justify-center text-white font-bold shadow-md">
                 4
               </div>
               <h3 className="text-lg font-semibold text-gray-900">Quality Verification</h3>
