@@ -1,9 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { Apple, Banana, Cherry } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -57,8 +55,14 @@ export function HeroSection() {
           <div className="relative lg:pl-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Card className="bg-white/90 backdrop-blur-sm">
-                <CardHeader className="flex items-center">
-                  <Apple className="h-12 w-12 text-soko-orange" />
+                <CardHeader className="flex flex-col items-center">
+                  <div className="w-full h-48 rounded-t-lg overflow-hidden">
+                    <img 
+                      src="https://images.pexels.com/photos/547263/pexels-photo-547263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                      alt="Fresh maize"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <h3 className="text-xl font-semibold text-center mt-2">Maize</h3>
                 </CardHeader>
                 <CardContent>
@@ -68,8 +72,14 @@ export function HeroSection() {
               </Card>
 
               <Card className="bg-white/90 backdrop-blur-sm">
-                <CardHeader className="flex items-center">
-                  <Banana className="h-12 w-12 text-soko-orange" />
+                <CardHeader className="flex flex-col items-center">
+                  <div className="w-full h-48 rounded-t-lg overflow-hidden">
+                    <img 
+                      src="https://images.pexels.com/photos/1393382/pexels-photo-1393382.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                      alt="Fresh beans"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <h3 className="text-xl font-semibold text-center mt-2">Beans</h3>
                 </CardHeader>
                 <CardContent>
@@ -79,8 +89,14 @@ export function HeroSection() {
               </Card>
 
               <Card className="bg-white/90 backdrop-blur-sm">
-                <CardHeader className="flex items-center">
-                  <Cherry className="h-12 w-12 text-soko-orange" />
+                <CardHeader className="flex flex-col items-center">
+                  <div className="w-full h-48 rounded-t-lg overflow-hidden">
+                    <img 
+                      src="https://images.pexels.com/photos/533280/pexels-photo-533280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
+                      alt="Fresh tomatoes"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <h3 className="text-xl font-semibold text-center mt-2">Tomatoes</h3>
                 </CardHeader>
                 <CardContent>

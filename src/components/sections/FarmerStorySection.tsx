@@ -1,7 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function FarmerStorySection() {
   return (
@@ -15,9 +15,9 @@ export function FarmerStorySection() {
         <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-sm border border-gray-100">
           <div className="flex flex-col md:flex-row gap-8">
             <div className="md:w-1/3">
-              <div className="aspect-square bg-gray-200 rounded-full overflow-hidden">
+              <div className="aspect-square rounded-full overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
+                  src="https://images.pexels.com/photos/7551442/pexels-photo-7551442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
                   alt="Jane, maize farmer from Kisumu"
                   className="w-full h-full object-cover" 
                 />
@@ -36,10 +36,12 @@ export function FarmerStorySection() {
               </div>
               
               <div className="mt-6">
-                <Button variant="sokoGreen" className="group">
-                  More Success Stories
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
+                <Link to="/success-stories">
+                  <Button variant="sokoGreen" className="group">
+                    More Success Stories
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
