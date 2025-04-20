@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { Wheat, Bean, Tomato } from "lucide-react";
+import { Apple, Banana, Cherry } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -58,7 +58,7 @@ export function HeroSection() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader className="flex items-center">
-                  <Wheat className="h-12 w-12 text-soko-orange" />
+                  <Apple className="h-12 w-12 text-soko-orange" />
                   <h3 className="text-xl font-semibold text-center mt-2">Maize</h3>
                 </CardHeader>
                 <CardContent>
@@ -69,7 +69,7 @@ export function HeroSection() {
 
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader className="flex items-center">
-                  <Bean className="h-12 w-12 text-soko-orange" />
+                  <Banana className="h-12 w-12 text-soko-orange" />
                   <h3 className="text-xl font-semibold text-center mt-2">Beans</h3>
                 </CardHeader>
                 <CardContent>
@@ -80,7 +80,7 @@ export function HeroSection() {
 
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader className="flex items-center">
-                  <Tomato className="h-12 w-12 text-soko-orange" />
+                  <Cherry className="h-12 w-12 text-soko-orange" />
                   <h3 className="text-xl font-semibold text-center mt-2">Tomatoes</h3>
                 </CardHeader>
                 <CardContent>
