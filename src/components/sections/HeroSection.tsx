@@ -6,14 +6,14 @@ import { Card, CardHeader, CardContent } from "@/components/ui/card";
 export function HeroSection() {
   return (
     <div 
-      className="relative overflow-hidden bg-cover bg-center bg-no-repeat"
+      className="relative overflow-hidden bg-cover bg-center bg-no-repeat min-h-[90vh] sm:min-h-[80vh]"
       style={{
         backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://images.pexels.com/photos/31585422/pexels-photo-31585422/free-photo-of-elderly-vendor-at-market-stall-with-grain-bags.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")',
       }}
     >
-      <div className="container px-4 py-16 mx-auto sm:px-6 sm:py-24 lg:py-32">
-        <div className="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
-          <div>
+      <div className="container px-4 py-8 mx-auto sm:px-6 sm:py-16 lg:py-24">
+        <div className="grid items-center grid-cols-1 gap-8 lg:grid-cols-2">
+          <div className="text-center lg:text-left">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
               <span className="text-soko-green">Surplus</span>
               <span className="text-soko-orange">Soko</span>
@@ -24,7 +24,7 @@ export function HeroSection() {
             <p className="mt-4 text-lg text-gray-200">
               We connect farmers directly to buyers using simple SMS technology, eliminating middlemen and reducing food waste.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 mt-8">
+            <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start">
               <Link to="/register">
                 <Button variant="sokoGreen" size="lg" className="group">
                   Get Started
@@ -37,7 +37,7 @@ export function HeroSection() {
                 </Button>
               </Link>
             </div>
-            <div className="mt-8 grid grid-cols-3 gap-4">
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
               <div className="text-center p-3 bg-white rounded-lg shadow-sm">
                 <p className="text-2xl font-bold text-soko-green">30-40%</p>
                 <p className="text-xs text-gray-600">Food waste reduction</p>
@@ -52,8 +52,9 @@ export function HeroSection() {
               </div>
             </div>
           </div>
-          <div className="relative lg:pl-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+          <div className="relative lg:pl-8 mt-8 lg:mt-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <Card className="bg-white/90 backdrop-blur-sm">
                 <CardHeader className="flex flex-col items-center">
                   <div className="w-full h-48 rounded-t-lg overflow-hidden">

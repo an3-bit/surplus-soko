@@ -38,7 +38,7 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-16 bg-soko-cream">
+    <section className="py-12 sm:py-16 bg-soko-cream">
       <div className="container px-4 mx-auto sm:px-6">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <Badge variant="sokoGreen" className="mb-4">Testimonials</Badge>
@@ -48,16 +48,16 @@ export function TestimonialsSection() {
         <Carousel className="w-full max-w-5xl mx-auto" opts={{ loop: true, align: "start", dragFree: true }}>
           <CarouselContent className="-ml-2 md:-ml-4">
             {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                <Card className="border-none shadow-lg">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-4 mb-4">
-                      <Avatar className="h-12 w-12">
+              <CarouselItem key={index} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
+                <Card className="h-full border-none shadow-lg">
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="flex items-center gap-3 sm:gap-4 mb-4">
+                      <Avatar className="h-10 w-10 sm:h-12 sm:w-12">
                         <img src={testimonial.image} alt={testimonial.name} className="object-cover" />
                       </Avatar>
                       <div>
-                        <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                        <p className="text-sm text-gray-600">{testimonial.role}</p>
+                        <h4 className="font-semibold text-gray-900 text-sm sm:text-base">{testimonial.name}</h4>
+                        <p className="text-xs sm:text-sm text-gray-600">{testimonial.role}</p>
                       </div>
                     </div>
                     <div className="flex gap-1 mb-4">

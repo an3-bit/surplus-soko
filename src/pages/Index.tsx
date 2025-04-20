@@ -1,4 +1,3 @@
-
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "@/components/sections/HeroSection";
@@ -14,7 +13,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-1">
+      <main className="flex-1 overflow-x-hidden">
         <HeroSection />
         <HowItWorksSection />
         <ImpactSection />

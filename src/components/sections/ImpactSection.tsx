@@ -7,7 +7,7 @@ export function ImpactSection() {
   const costReduction = useCountUp(15);
 
   return (
-    <section className="py-16 bg-gray-50" id="impact">
+    <section className="py-12 sm:py-16 bg-gray-50" id="impact">
       <div className="container px-4 mx-auto sm:px-6">
         <div className="max-w-3xl mx-auto text-center">
           <Badge variant="sokoOrange" className="mb-4">Real Change</Badge>
@@ -17,8 +17,8 @@ export function ImpactSection() {
           </p>
         </div>
 
-        <div className="mt-16">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="mt-12 sm:mt-16">
+          <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
             <div className="p-6 bg-white border border-gray-100 rounded-lg shadow-sm">
               <div className="text-3xl font-bold text-soko-green">{lossReduction}%</div>
               <h3 className="mt-4 text-lg font-medium text-gray-900">Post-Harvest Loss Reduction</h3>
@@ -54,9 +54,9 @@ export function ImpactSection() {
           </div>
         </div>
 
-        <div className="mt-16 p-6 bg-white border border-gray-100 rounded-lg shadow-sm">
+        <div className="mt-12 sm:mt-16 p-4 sm:p-6 bg-white border border-gray-100 rounded-lg shadow-sm">
           <h3 className="text-xl font-bold text-gray-900 mb-4">The Problem We're Solving</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
             <div className="space-y-4">
               <div className="flex items-start">
                 <span className="flex-shrink-0 w-6 h-6 rounded-full bg-soko-orange/20 flex items-center justify-center text-soko-orange text-sm font-medium">

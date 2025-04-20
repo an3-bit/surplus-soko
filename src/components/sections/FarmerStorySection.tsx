@@ -5,16 +5,16 @@ import { Link } from "react-router-dom";
 
 export function FarmerStorySection() {
   return (
-    <section className="py-16 bg-soko-earth">
+    <section className="py-12 sm:py-16 bg-soko-earth">
       <div className="container px-4 mx-auto sm:px-6">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <Badge variant="sokoOrange" className="mb-4">Real Stories</Badge>
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">Transforming Lives</h2>
         </div>
         
-        <div className="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-sm border border-gray-100">
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="md:w-1/3">
+        <div className="max-w-4xl mx-auto bg-white p-4 sm:p-8 rounded-lg shadow-sm border border-gray-100">
+          <div className="flex flex-col md:flex-row gap-6 sm:gap-8">
+            <div className="mx-auto md:mx-0 md:w-1/3 max-w-[240px]">
               <div className="aspect-square rounded-full overflow-hidden">
                 <img 
                   src="https://images.pexels.com/photos/7551442/pexels-photo-7551442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" 
