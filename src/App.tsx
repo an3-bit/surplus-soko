@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,9 +9,11 @@ import HowItWorks from "./pages/HowItWorks";
 import Impact from "./pages/Impact";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
-import Register from "./pages/Register";
 import Support from "./pages/Support";
 import SuccessStories from "./pages/SuccessStories";
+import JoinUs from "./pages/JoinUs";
+import RegisterFarmer from "./pages/RegisterFarmer";
+import RegisterBuyer from "./pages/RegisterBuyer";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +28,9 @@ const App = () => (
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/impact" element={<Impact />} />
           <Route path="/about" element={<About />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/join-us" element={<JoinUs />} />
+          <Route path="/register/farmer" element={<RegisterFarmer />} />
+          <Route path="/register/buyer" element={<RegisterBuyer />} />
           <Route path="/support" element={<Support />} />
           <Route path="/success-stories" element={<SuccessStories />} />
           <Route path="*" element={<NotFound />} />

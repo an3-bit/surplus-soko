@@ -29,8 +29,8 @@ export function Navbar() {
           </Link>
         </nav>
         <div className="hidden md:flex md:items-center md:space-x-3">
-          <Link to="/register">
-            <Button variant="sokoOutlineGreen">Register</Button>
+          <Link to="/join-us">
+            <Button variant="sokoOutlineGreen">Join Us</Button>
           </Link>
           <Link to="/support">
             <Button variant="sokoGreen">Support</Button>
@@ -62,8 +62,8 @@ export function Navbar() {
                 About
               </Link>
               <div className="flex flex-col space-y-2 pt-3 border-t">
-                <Link to="/register">
-                  <Button variant="sokoOutlineGreen" className="w-full" onClick={() => setIsOpen(false)}>Register</Button>
+                <Link to="/join-us">
+                  <Button variant="sokoOutlineGreen" className="w-full" onClick={() => setIsOpen(false)}>Join Us</Button>
                 </Link>
                 <Link to="/support">
                   <Button variant="sokoGreen" className="w-full" onClick={() => setIsOpen(false)}>Support</Button>
