@@ -7,6 +7,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
 } from "@/components/ui/carousel";
 
 const team = [
@@ -55,7 +57,7 @@ const team = [
 const supporters = [
   {
     name: "M-Pesa",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/6/6b/M-Pesa_Logo.png",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/M-Pesa_Logo.png/800px-M-Pesa_Logo.png",
   },
   {
     name: "Osho Chemicals",
@@ -67,7 +69,7 @@ const supporters = [
   },
   {
     name: "Equity Bank",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/7/75/Equity_Bank_logo.png",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Equity_Bank_logo.png/1200px-Equity_Bank_logo.png",
   },
   {
     name: "Alliance for a Green Revolution in Africa",
@@ -202,23 +204,27 @@ const About = () => {
               </p>
             </div>
             <div className="mt-12 max-w-4xl mx-auto">
-              <Carousel opts={{ loop: true }}>
-                <CarouselContent className="flex">
-                  {/* repeat twice for smooth looping */}
-                  {[...supporters, ...supporters].map((partner, idx) => (
-                    <CarouselItem
-                      key={idx}
-                      className="flex items-center justify-center p-6 w-56 h-36 animate-slide-in-right"
-                    >
-                      <img
-                        src={partner.logo}
-                        alt={partner.name + " logo"}
-                        className="h-20 object-contain grayscale hover:grayscale-0 transition duration-200 mx-auto"
-                        style={{ maxWidth: 170 }}
-                      />
+              <Carousel className="relative w-full px-8" 
+                        opts={{ loop: true, align: 'start', dragFree: true }}>
+                <CarouselContent className="py-4">
+                  {supporters.map((partner, idx) => (
+                    <CarouselItem key={idx} className="md:basis-1/3 lg:basis-1/4 flex justify-center items-center">
+                      <div className="p-2 h-32 flex items-center justify-center">
+                        <img
+                          src={partner.logo}
+                          alt={`${partner.name} logo`}
+                          className="max-h-24 max-w-full object-contain transition-all duration-200 hover:scale-105"
+                          onError={(e) => {
+                            console.error(`Failed to load image: ${partner.logo}`);
+                            e.currentTarget.src = "https://placehold.co/200x100/EAEAEA/CCCCCC?text=Logo";
+                          }}
+                        />
+                      </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
+                <CarouselPrevious className="left-0" />
+                <CarouselNext className="right-0" />
               </Carousel>
             </div>
           </div>
@@ -230,4 +236,3 @@ const About = () => {
 };
 
 export default About;
-
