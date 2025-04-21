@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -10,9 +11,13 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full bg-white border-b shadow-sm">
       <div className="container flex items-center justify-between h-16 px-4 mx-auto sm:px-6">
         <Link to="/" className="flex items-center space-x-2">
-          <span className="text-2xl font-bold bg-gradient-to-r from-soko-green to-soko-orange bg-clip-text text-transparent">
-            SurplusSoko
-          </span>
+          <img
+            src="/lovable-uploads/c24058b0-7d7d-43af-8cc3-123c8503e7d9.png"
+            alt="SurplusSoko logo"
+            className="h-10"
+            draggable={false}
+            loading="eager"
+          />
         </Link>
         <nav className="hidden space-x-6 md:flex">
           <Link to="/" className="text-sm font-medium transition-colors hover:text-soko-green">
