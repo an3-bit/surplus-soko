@@ -3,7 +3,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plant, Store } from "lucide-react";
+import { Sprout, Store } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const JoinUs = () => {
@@ -25,7 +25,7 @@ const JoinUs = () => {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <Card className="border-2 border-soko-green hover:shadow-lg transition-shadow">
               <CardHeader className="text-center">
-                <Plant className="w-12 h-12 mx-auto text-soko-green mb-4" />
+                <Sprout className="w-12 h-12 mx-auto text-soko-green mb-4" />
                 <CardTitle className="text-2xl">Register as Farmer</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
