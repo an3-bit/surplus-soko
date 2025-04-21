@@ -33,9 +33,26 @@ const Support = () => {
                   <Phone className="w-6 h-6" />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900">Phone Support</h3>
-                <p className="mt-2 text-gray-600">+254 794 212 696</p>
-                <p className="text-center" >or</p>
-                <p className="mt-2 text-gray-600">+254 742 048 713</p>
+                
+                <a 
+          href="https://wa.me/254794212696" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="mt-2 text-soko-green hover:underline block"
+        >
+          +254 794 212 696
+        </a>
+
+        <p className="text-center">or</p>
+
+        <a 
+          href="https://wa.me/254742048713" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="mt-2 text-soko-green hover:underline block"
+        >
+          +254 742 048 713
+        </a>
                 <p className="text-sm text-gray-500">Available 24/7</p>
               </div>
 

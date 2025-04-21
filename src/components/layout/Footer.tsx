@@ -52,11 +52,29 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-gray-900 tracking-wider uppercase">Contact Us</h3>
             <ul className="mt-4 space-y-2">
-              <li className="flex items-center text-sm text-gray-600">
-                <Phone size={16} className="mr-2 text-soko-green" />
-                <span>+254 794 212 696 / +254 742 048 713</span> 
-    
-              </li>
+            <li className="flex items-center text-sm text-gray-600">
+  <Phone size={16} className="mr-2 text-soko-green" />
+  <div className="flex flex-col sm:flex-row sm:space-x-2">
+    <a
+      href="https://wa.me/254794212696"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:underline text-soko-green"
+    >
+      +254 794 212 696
+    </a>
+    <span className="hidden sm:inline">/</span>
+    <a
+      href="https://wa.me/254742048713"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="hover:underline text-soko-green"
+    >
+      +254 742 048 713
+    </a>
+  </div>
+</li>
+
               <li className="flex items-center text-sm text-gray-600">
                 <Mail size={16} className="mr-2 text-soko-green" />
                 <span>contact@surplussoko.co.ke</span>
