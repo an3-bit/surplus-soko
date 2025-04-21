@@ -8,15 +8,15 @@ const SuccessStories = () => {
     {
       name: "James Mwangi",
       location: "Nakuru County",
-      image: "https://images.pexels.com/photos/8960865/pexels-photo-8960865.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      story: "Through SurplusSoko, I've increased my potato yield by 40% and found reliable buyers who pay fair prices. My children can now attend better schools.",
+      image: "https://images.pexels.com/photos/13042951/pexels-photo-13042951.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      story: "Through SurplusSoko, I've increased my maize yield by 40% and found reliable buyers who pay fair prices. My children can now attend better schools.",
       crop: "Potatoes",
       impact: "40% yield increase"
     },
     {
       name: "Sarah Ochieng",
       location: "Siaya County",
-      image: "https://images.pexels.com/photos/7551618/pexels-photo-7551618.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      image: "https://images.pexels.com/photos/2063890/pexels-photo-2063890.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       story: "The SMS platform has revolutionized how I sell my produce. No more wastage, and I can plan my harvests better knowing I have guaranteed buyers.",
       crop: "Sweet Potatoes",
       impact: "70% less waste"
@@ -24,7 +24,7 @@ const SuccessStories = () => {
     {
       name: "David Kimani",
       location: "Muranga County",
-      image: "https://images.pexels.com/photos/8960996/pexels-photo-8960996.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      image: "https://images.pexels.com/photos/27865780/pexels-photo-27865780/free-photo-of-a-man-is-sorting-through-a-pile-of-bags.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       story: "From struggling to find buyers to now having schools and restaurants as regular customers. SurplusSoko has transformed my farming business.",
       crop: "Vegetables",
       impact: "2.5x income increase"

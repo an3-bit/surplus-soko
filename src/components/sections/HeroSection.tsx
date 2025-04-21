@@ -25,7 +25,7 @@ export function HeroSection() {
               We connect farmers directly to buyers using simple SMS technology, eliminating middlemen and reducing food waste.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center lg:justify-start">
-              <Link to="/register">
+              <Link to="/join-us">
                 <Button variant="sokoGreen" size="lg" className="group">
                   Get Started
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />

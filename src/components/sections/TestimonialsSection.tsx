@@ -13,25 +13,25 @@ const testimonials = [
   {
     name: "John Kimani",
     role: "Maize Farmer",
-    image: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg",
+    image: "https://images.pexels.com/photos/4110397/pexels-photo-4110397.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     text: "SurplusSoko has transformed my farming business. I now get better prices for my produce and faster payments.",
   },
   {
     name: "Mary Wanjiku",
     role: "Tomato Farmer",
-    image: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg",
+    image: "https://images.pexels.com/photos/1385294/pexels-photo-1385294.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     text: "The platform is so easy to use! I just dial *384*45# and within hours I have buyers for my tomatoes.",
   },
-  {
-    name: "Peter Ochieng",
-    role: "Bean Farmer",
-    image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
-    text: "Since joining SurplusSoko, my income has doubled and I've expanded my farm size significantly.",
-  },
+  // {
+  //   name: "Peter Ochieng",
+  //   role: "Bean Farmer",
+  //   image: "https://images.pexels.com/photos/1035835/pexels-photo-1035835.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+  //   text: "Since joining SurplusSoko, my income has doubled and I've expanded my farm size significantly.",
+  // },
   {
     name: "Sarah Adhiambo",
     role: "Potato Farmer",
-    image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
+    image: "https://images.pexels.com/photos/30567438/pexels-photo-30567438/free-photo-of-portrait-of-a-woman-by-the-ocean-in-mombasa.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     text: "The quality verification system gives buyers confidence in my produce. It's a win-win for everyone.",
   },
 ];
