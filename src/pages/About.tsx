@@ -1,4 +1,3 @@
-
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Badge } from "@/components/ui/badge";
@@ -57,23 +56,23 @@ const team = [
 const supporters = [
   {
     name: "M-Pesa",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/M-Pesa_Logo.png/800px-M-Pesa_Logo.png",
+    logo: "https://images.pexels.com/photos/6694543/pexels-photo-6694543.jpeg?auto=compress&cs=tinysrgb&w=300",
   },
   {
     name: "Osho Chemicals",
-    logo: "https://osho.co.ke/wp-content/uploads/2021/03/OSHO_logo.png",
+    logo: "https://images.pexels.com/photos/7821684/pexels-photo-7821684.jpeg?auto=compress&cs=tinysrgb&w=300",
   },
   {
     name: "Twiga Foods",
-    logo: "https://twiga.com/wp-content/uploads/2020/05/Twiga-Foods-Logo.png",
+    logo: "https://images.pexels.com/photos/5650023/pexels-photo-5650023.jpeg?auto=compress&cs=tinysrgb&w=300",
   },
   {
     name: "Equity Bank",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Equity_Bank_logo.png/1200px-Equity_Bank_logo.png",
+    logo: "https://images.pexels.com/photos/8370752/pexels-photo-8370752.jpeg?auto=compress&cs=tinysrgb&w=300",
   },
   {
     name: "Alliance for a Green Revolution in Africa",
-    logo: "https://agra.org/wp-content/uploads/2022/11/AGRA-logo.png",
+    logo: "https://images.pexels.com/photos/5490778/pexels-photo-5490778.jpeg?auto=compress&cs=tinysrgb&w=300",
   },
 ];
 
@@ -204,19 +203,25 @@ const About = () => {
               </p>
             </div>
             <div className="mt-12 max-w-4xl mx-auto">
-              <Carousel className="relative w-full px-8" 
-                        opts={{ loop: true, align: 'start', dragFree: true }}>
+              <Carousel 
+                className="relative w-full px-8" 
+                opts={{ 
+                  loop: true, 
+                  align: 'start', 
+                  dragFree: true,
+                  containScroll: 'trimSnaps'
+                }}>
                 <CarouselContent className="py-4">
                   {supporters.map((partner, idx) => (
                     <CarouselItem key={idx} className="md:basis-1/3 lg:basis-1/4 flex justify-center items-center">
-                      <div className="p-2 h-32 flex items-center justify-center">
+                      <div className="p-4 h-36 flex items-center justify-center bg-white rounded-lg shadow-sm border border-gray-100">
                         <img
                           src={partner.logo}
-                          alt={`${partner.name} logo`}
-                          className="max-h-24 max-w-full object-contain transition-all duration-200 hover:scale-105"
+                          alt={`${partner.name} partner`}
+                          className="max-h-28 max-w-full object-cover rounded transition-all duration-200 hover:scale-105"
                           onError={(e) => {
                             console.error(`Failed to load image: ${partner.logo}`);
-                            e.currentTarget.src = "https://placehold.co/200x100/EAEAEA/CCCCCC?text=Logo";
+                            e.currentTarget.src = "https://placehold.co/300x200/f8f9fa/6c757d?text=" + partner.name;
                           }}
                         />
                       </div>
