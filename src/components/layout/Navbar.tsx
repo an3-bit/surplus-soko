@@ -12,7 +12,7 @@ export function Navbar() {
       <div className="container flex items-center justify-between h-16 px-4 mx-auto sm:px-6">
         <Link to="/" className="flex items-center space-x-2">
           <img
-            src="/lovable-uploads/c24058b0-7d7d-43af-8cc3-123c8503e7d9.png"
+            src="/lovable-uploads/logo.png"
             alt="SurplusSoko logo"
             className="h-10"
             draggable={false}
