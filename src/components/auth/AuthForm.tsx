@@ -21,22 +21,21 @@ const signInSchema = z.object({
 });
 
 // Define the signup schema with fullName conditionally
-const getSignUpSchema = (includeFullName: boolean) => {
-  if (includeFullName) {
-    return signInSchema.extend({
-      fullName: z.string().min(2, "Name must be at least 2 characters"),
-    });
-  }
-  return signInSchema;
-};
+const signUpSchema = signInSchema.extend({
+  fullName: z.string().min(2, "Name must be at least 2 characters"),
+});
 
 export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormProps) {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const formSchema = mode === "signup" ? getSignUpSchema(includeFullName) : signInSchema;
+  
+  // Choose the appropriate schema based on mode and whether fullName is included
+  const formSchema = mode === "signup" && includeFullName ? signUpSchema : signInSchema;
 
-  // Using a more explicit type definition for the form
-  type FormValues = z.infer<typeof signInSchema> & {
+  // Define form values type that accommodates both schemas
+  type FormValues = {
+    email: string;
+    password: string;
     fullName?: string;
   };
 
@@ -45,7 +44,7 @@ export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormP
     defaultValues: {
       email: "",
       password: "",
-      ...(includeFullName ? { fullName: "" } : {}),
+      fullName: "",
     },
   });
 
@@ -56,11 +55,12 @@ export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormP
       let data = null;
 
       if (mode === "signup") {
-        // Explicitly type the metadata to ensure full_name is a string
+        // Create metadata only if fullName is provided
         const metadata = includeFullName && values.fullName 
-          ? { full_name: values.fullName as string } 
+          ? { full_name: values.fullName } 
           : undefined;
 
+        console.log("Signing up with metadata:", metadata);
         const result = await signUp(
           values.email, 
           values.password, 
@@ -75,6 +75,7 @@ export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormP
       }
 
       if (error) {
+        console.error("Auth error:", error);
         toast({
           title: "Authentication Error",
           description: error.message,
@@ -110,9 +111,7 @@ export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormP
         {includeFullName && mode === "signup" && (
           <FormField
             control={form.control}
-            // Use 'as any' to bypass TypeScript's form field name checking
-            // since we're using a dynamic schema
-            name={"fullName" as any}
+            name="fullName"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Full Name</FormLabel>

@@ -1,4 +1,3 @@
-
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
@@ -8,24 +7,37 @@ export type AuthError = {
 };
 
 export async function signUp(email: string, password: string, metadata?: { full_name?: string }) {
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: metadata,
-    },
-  });
+  console.log("Attempting to sign up with metadata:", metadata);
+  try {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: metadata,
+      },
+    });
 
-  return { data, error };
+    console.log("Sign up response:", data, error);
+    return { data, error };
+  } catch (e) {
+    console.error("Sign up error:", e);
+    return { data: null, error: { message: "Failed to sign up. Please try again." } };
+  }
 }
 
 export async function signIn(email: string, password: string) {
-  const { data, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
-  return { data, error };
+    console.log("Sign in response:", data, error);
+    return { data, error };
+  } catch (e) {
+    console.error("Sign in error:", e);
+    return { data: null, error: { message: "Failed to sign in. Please try again." } };
+  }
 }
 
 export async function signOut() {
@@ -53,8 +65,20 @@ export function useAuth() {
 }
 
 export async function getCurrentUser() {
-  const { data } = await supabase.auth.getUser();
-  return data?.user;
+  try {
+    const { data, error } = await supabase.auth.getUser();
+    
+    if (error) {
+      console.error("Error getting user:", error);
+      return null;
+    }
+    
+    console.log("Current user:", data?.user);
+    return data?.user;
+  } catch (e) {
+    console.error("Get current user error:", e);
+    return null;
+  }
 }
 
 export async function createFarmerProfile(farmerData: {
