@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -28,6 +27,7 @@ const RegisterBuyer = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [step, setStep] = useState<"auth" | "details">("auth");
+  const [mode, setMode] = useState<"signup" | "signin">("signup");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   
@@ -37,7 +37,6 @@ const RegisterBuyer = () => {
       try {
         const { data } = await supabase.auth.getSession();
         if (data.session) {
-          console.log("User already authenticated, moving to profile creation");
           setStep("details");
         }
       } catch (error) {
@@ -75,13 +74,8 @@ const RegisterBuyer = () => {
     },
   });
 
-  const handleAuthSuccess = (data: any) => {
-    console.log("Auth success, user data:", data);
+  const handleAuthSuccess = () => {
     setStep("details");
-    toast({
-      title: "Account created!",
-      description: "Now let's set up your buyer profile",
-    });
   };
 
   const onSubmit = async (values: z.infer<typeof buyerFormSchema>) => {
@@ -155,15 +149,48 @@ const RegisterBuyer = () => {
         <div className="bg-gradient-to-r from-soko-orange/10 to-soko-green/10 py-16">
           <div className="container px-4 mx-auto sm:px-6">
             <div className="max-w-xl mx-auto">
-              <h1 className="text-3xl font-bold text-center mb-8">Register as a Buyer</h1>
-              
+              <h1 className="text-3xl font-bold text-center mb-8">
+                {mode === "signup" ? "Register as a Buyer" : "Welcome Back"}
+              </h1>
+
               {step === "auth" ? (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-center">Create Your Account</CardTitle>
+                    <CardTitle className="text-center">
+                      {mode === "signup" ? "Create Your Account" : "Sign In to Your Account"}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <AuthForm mode="signup" onSuccess={handleAuthSuccess} includeFullName={true} />
+                    <AuthForm 
+                      mode={mode} 
+                      onSuccess={handleAuthSuccess} 
+                      includeFullName={mode === "signup"} 
+                    />
+                    <div className="mt-4 text-center">
+                      {mode === "signup" ? (
+                        <p className="text-sm text-gray-600">
+                          Already have an account?{" "}
+                          <Button 
+                            variant="link" 
+                            className="p-0 h-auto font-semibold text-soko-orange"
+                            onClick={() => setMode("signin")}
+                          >
+                            Sign in
+                          </Button>
+                        </p>
+                      ) : (
+                        <p className="text-sm text-gray-600">
+                          Don't have an account?{" "}
+                          <Button 
+                            variant="link" 
+                            className="p-0 h-auto font-semibold text-soko-orange"
+                            onClick={() => setMode("signup")}
+                          >
+                            Create one
+                          </Button>
+                        </p>
+                      )}
+                    </div>
                   </CardContent>
                 </Card>
               ) : (

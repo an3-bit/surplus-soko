@@ -1,8 +1,11 @@
-
 import { useState, useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AuthForm } from "@/components/auth/AuthForm";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -10,11 +13,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useToast } from "@/components/ui/use-toast";
-import { AuthForm } from "@/components/auth/AuthForm";
 import { getCurrentUser, createFarmerProfile, updateUserProfile } from "@/lib/auth";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 
 const farmerFormSchema = z.object({
   phone: z.string().min(10, "Phone number must be at least 10 digits"),
@@ -25,11 +24,12 @@ const farmerFormSchema = z.object({
 });
 
 const RegisterFarmer = () => {
-  const { toast } = useToast();
-  const navigate = useNavigate();
   const [step, setStep] = useState<"auth" | "details">("auth");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [mode, setMode] = useState<"signup" | "signin">("signup");
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Check if user is already authenticated
   useEffect(() => {
@@ -37,7 +37,6 @@ const RegisterFarmer = () => {
       try {
         const { data } = await supabase.auth.getSession();
         if (data.session) {
-          console.log("User already authenticated, moving to profile creation");
           setStep("details");
         }
       } catch (error) {
@@ -50,19 +49,9 @@ const RegisterFarmer = () => {
     checkAuthStatus();
   }, []);
 
-  // Set up auth state listener
-  useEffect(() => {
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        console.log("Auth state changed:", event);
-        if (session) {
-          setStep("details");
-        }
-      }
-    );
-
-    return () => subscription.unsubscribe();
-  }, []);
+  const handleAuthSuccess = () => {
+    setStep("details");
+  };
 
   const form = useForm<z.infer<typeof farmerFormSchema>>({
     resolver: zodResolver(farmerFormSchema),
@@ -74,15 +63,6 @@ const RegisterFarmer = () => {
       experience: "",
     },
   });
-
-  const handleAuthSuccess = (data: any) => {
-    console.log("Auth success, user data:", data);
-    setStep("details");
-    toast({
-      title: "Account created!",
-      description: "Now let's set up your farmer profile",
-    });
-  };
 
   const onSubmit = async (values: z.infer<typeof farmerFormSchema>) => {
     setIsSubmitting(true);
@@ -155,15 +135,48 @@ const RegisterFarmer = () => {
         <div className="bg-gradient-to-r from-soko-green/10 to-soko-orange/10 py-16">
           <div className="container px-4 mx-auto sm:px-6">
             <div className="max-w-xl mx-auto">
-              <h1 className="text-3xl font-bold text-center mb-8">Register as a Farmer</h1>
-              
+              <h1 className="text-3xl font-bold text-center mb-8">
+                {mode === "signup" ? "Register as a Farmer" : "Welcome Back"}
+              </h1>
+
               {step === "auth" ? (
                 <Card>
                   <CardHeader>
-                    <CardTitle className="text-center">Create Your Account</CardTitle>
+                    <CardTitle className="text-center">
+                      {mode === "signup" ? "Create Your Account" : "Sign In to Your Account"}
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <AuthForm mode="signup" onSuccess={handleAuthSuccess} includeFullName={true} />
+                    <AuthForm 
+                      mode={mode} 
+                      onSuccess={handleAuthSuccess} 
+                      includeFullName={mode === "signup"} 
+                    />
+                    <div className="mt-4 text-center">
+                      {mode === "signup" ? (
+                        <p className="text-sm text-gray-600">
+                          Already have an account?{" "}
+                          <Button 
+                            variant="link" 
+                            className="p-0 h-auto font-semibold text-soko-green"
+                            onClick={() => setMode("signin")}
+                          >
+                            Sign in
+                          </Button>
+                        </p>
+                      ) : (
+                        <p className="text-sm text-gray-600">
+                          Don't have an account?{" "}
+                          <Button 
+                            variant="link" 
+                            className="p-0 h-auto font-semibold text-soko-green"
+                            onClick={() => setMode("signup")}
+                          >
+                            Create one
+                          </Button>
+                        </p>
+                      )}
+                    </div>
                   </CardContent>
                 </Card>
               ) : (
