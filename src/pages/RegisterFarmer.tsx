@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,7 @@ import { AuthForm } from "@/components/auth/AuthForm";
 import { getCurrentUser, createFarmerProfile, updateUserProfile } from "@/lib/auth";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 
 const farmerFormSchema = z.object({
   phone: z.string().min(10, "Phone number must be at least 10 digits"),
@@ -28,6 +29,40 @@ const RegisterFarmer = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState<"auth" | "details">("auth");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+
+  // Check if user is already authenticated
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      try {
+        const { data } = await supabase.auth.getSession();
+        if (data.session) {
+          console.log("User already authenticated, moving to profile creation");
+          setStep("details");
+        }
+      } catch (error) {
+        console.error("Error checking auth status:", error);
+      } finally {
+        setIsCheckingAuth(false);
+      }
+    };
+
+    checkAuthStatus();
+  }, []);
+
+  // Set up auth state listener
+  useEffect(() => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        console.log("Auth state changed:", event);
+        if (session) {
+          setStep("details");
+        }
+      }
+    );
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const form = useForm<z.infer<typeof farmerFormSchema>>({
     resolver: zodResolver(farmerFormSchema),
@@ -40,7 +75,8 @@ const RegisterFarmer = () => {
     },
   });
 
-  const handleAuthSuccess = () => {
+  const handleAuthSuccess = (data: any) => {
+    console.log("Auth success, user data:", data);
     setStep("details");
     toast({
       title: "Account created!",
@@ -56,7 +92,7 @@ const RegisterFarmer = () => {
       if (!user) {
         toast({
           title: "Authentication Error",
-          description: "You must be signed in to complete registration",
+          description: "Session expired. Please sign in again.",
           variant: "destructive",
         });
         setStep("auth");
@@ -99,6 +135,18 @@ const RegisterFarmer = () => {
       setIsSubmitting(false);
     }
   };
+
+  if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1 flex items-center justify-center">
+          <p>Loading...</p>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">

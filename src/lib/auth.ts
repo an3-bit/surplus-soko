@@ -1,3 +1,4 @@
+
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
@@ -66,15 +67,20 @@ export function useAuth() {
 
 export async function getCurrentUser() {
   try {
-    const { data, error } = await supabase.auth.getUser();
+    const { data, error } = await supabase.auth.getSession();
     
     if (error) {
-      console.error("Error getting user:", error);
+      console.error("Error getting session:", error);
       return null;
     }
     
-    console.log("Current user:", data?.user);
-    return data?.user;
+    if (!data.session) {
+      console.log("No active session found");
+      return null;
+    }
+    
+    console.log("Current user from session:", data.session.user);
+    return data.session.user;
   } catch (e) {
     console.error("Get current user error:", e);
     return null;

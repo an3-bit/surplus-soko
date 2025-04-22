@@ -40,7 +40,7 @@ export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormP
   };
 
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(formSchema as any), // Type assertion to handle the conditional schema
     defaultValues: {
       email: "",
       password: "",
@@ -68,6 +68,17 @@ export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormP
         );
         error = result.error;
         data = result.data;
+        
+        // For signup, automatically sign them in if there's no error
+        if (!error) {
+          console.log("Auto sign-in after successful signup");
+          const signInResult = await signIn(values.email, values.password);
+          if (signInResult.error) {
+            console.warn("Auto sign-in failed:", signInResult.error);
+          } else {
+            data = signInResult.data;
+          }
+        }
       } else {
         const result = await signIn(values.email, values.password);
         error = result.error;
@@ -111,7 +122,7 @@ export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormP
         {includeFullName && mode === "signup" && (
           <FormField
             control={form.control}
-            name="fullName"
+            name="fullName" 
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Full Name</FormLabel>
