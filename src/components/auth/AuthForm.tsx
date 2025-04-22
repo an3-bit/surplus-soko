@@ -20,35 +20,47 @@ const signInSchema = z.object({
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-const signUpSchema = signInSchema.extend({
-  fullName: z.string().min(2, "Name must be at least 2 characters").optional(),
-});
+// Define the signup schema with fullName conditionally
+const getSignUpSchema = (includeFullName: boolean) => {
+  if (includeFullName) {
+    return signInSchema.extend({
+      fullName: z.string().min(2, "Name must be at least 2 characters"),
+    });
+  }
+  return signInSchema;
+};
+
+type FormValues = z.infer<ReturnType<typeof getSignUpSchema>>;
 
 export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormProps) {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const formSchema = mode === "signup" ? signUpSchema : signInSchema;
+  const formSchema = mode === "signup" ? getSignUpSchema(includeFullName) : signInSchema;
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       password: "",
       ...(includeFullName ? { fullName: "" } : {}),
-    },
+    } as any, // Using 'any' here to satisfy TypeScript temporarily
   });
 
-  const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+  const handleSubmit = async (values: FormValues) => {
     setIsLoading(true);
     try {
       let error: AuthError | null = null;
       let data = null;
 
       if (mode === "signup") {
+        const metadata = includeFullName && 'fullName' in values 
+          ? { full_name: values.fullName } 
+          : undefined;
+
         const result = await signUp(
           values.email, 
           values.password, 
-          includeFullName ? { full_name: values.fullName } : undefined
+          metadata
         );
         error = result.error;
         data = result.data;
@@ -94,7 +106,7 @@ export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormP
         {includeFullName && mode === "signup" && (
           <FormField
             control={form.control}
-            name="fullName"
+            name="fullName" 
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Full Name</FormLabel>
