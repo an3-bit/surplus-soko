@@ -9,6 +9,82 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      buyer_profiles: {
+        Row: {
+          business_name: string
+          buying_interests: string
+          created_at: string | null
+          id: string
+          location: string
+          purchase_volume: string
+          updated_at: string | null
+        }
+        Insert: {
+          business_name: string
+          buying_interests: string
+          created_at?: string | null
+          id: string
+          location: string
+          purchase_volume: string
+          updated_at?: string | null
+        }
+        Update: {
+          business_name?: string
+          buying_interests?: string
+          created_at?: string | null
+          id?: string
+          location?: string
+          purchase_volume?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "buyer_profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      farmer_profiles: {
+        Row: {
+          created_at: string | null
+          crops: string
+          experience: string
+          farm_size: string
+          id: string
+          location: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          crops: string
+          experience: string
+          farm_size: string
+          id: string
+          location: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          crops?: string
+          experience?: string
+          farm_size?: string
+          id?: string
+          location?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "farmer_profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       Farmers: {
         Row: {
           created_at: string
@@ -21,6 +97,33 @@ export type Database = {
         Update: {
           created_at?: string
           id?: number
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          email: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }

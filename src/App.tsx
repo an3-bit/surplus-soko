@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 import Support from "./pages/Support";
 import SuccessStories from "./pages/SuccessStories";
 import JoinUs from "./pages/JoinUs";
+import Register from "./pages/Register";
 import RegisterFarmer from "./pages/RegisterFarmer";
 import RegisterBuyer from "./pages/RegisterBuyer";
 
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/impact" element={<Impact />} />
           <Route path="/about" element={<About />} />
           <Route path="/join-us" element={<JoinUs />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/register/farmer" element={<RegisterFarmer />} />
           <Route path="/register/buyer" element={<RegisterBuyer />} />
           <Route path="/support" element={<Support />} />

@@ -1,46 +1,21 @@
 
+import { useState } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { useToast } from "@/components/ui/use-toast";
-
-const formSchema = z.object({
-  fullName: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().min(10, "Phone number must be at least 10 digits"),
-  role: z.string().min(2, "Please specify if you're a farmer or buyer"),
-});
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { useNavigate } from "react-router-dom";
+import { Sprout, Store } from "lucide-react";
 
 const Register = () => {
-  const { toast } = useToast();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      fullName: "",
-      email: "",
-      phone: "",
-      role: "",
-    },
-  });
+  const navigate = useNavigate();
+  
+  const handleFarmerClick = () => {
+    navigate("/register/farmer");
+  };
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    toast({
-      title: "Registration Successful",
-      description: "We'll contact you shortly with next steps.",
-    });
-    console.log(values);
+  const handleBuyerClick = () => {
+    navigate("/register/buyer");
   };
 
   return (
@@ -65,66 +40,46 @@ const Register = () => {
 
         <section className="py-16">
           <div className="container px-4 mx-auto sm:px-6">
-            <div className="max-w-md mx-auto">
-              <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                  <FormField
-                    control={form.control}
-                    name="fullName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Full Name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="John Doe" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                          <Input placeholder="john@example.com" type="email" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="phone"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Phone Number</FormLabel>
-                        <FormControl>
-                          <Input placeholder="+254..." {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="role"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>I am a...</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Farmer or Buyer" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button type="submit" variant="sokoGreen" className="w-full">
-                    Register Now
-                  </Button>
-                </form>
-              </Form>
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-2xl font-bold text-center mb-8">Choose your registration type</h2>
+              
+              <div className="grid md:grid-cols-2 gap-8">
+                <Card className="border-2 border-soko-green hover:shadow-lg transition-shadow">
+                  <CardHeader className="text-center">
+                    <Sprout className="w-12 h-12 mx-auto text-soko-green mb-4" />
+                    <CardTitle className="text-2xl">Register as Farmer</CardTitle>
+                    <CardDescription>I want to sell my agricultural products</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-gray-600">
+                    <p>✓ Direct access to buyers</p>
+                    <p>✓ Better prices for your produce</p>
+                    <p>✓ Real-time market updates</p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="sokoGreen" className="w-full" onClick={handleFarmerClick}>
+                      Register as Farmer
+                    </Button>
+                  </CardFooter>
+                </Card>
+
+                <Card className="border-2 border-soko-orange hover:shadow-lg transition-shadow">
+                  <CardHeader className="text-center">
+                    <Store className="w-12 h-12 mx-auto text-soko-orange mb-4" />
+                    <CardTitle className="text-2xl">Register as Buyer</CardTitle>
+                    <CardDescription>I want to purchase agricultural products</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-2 text-gray-600">
+                    <p>✓ Direct sourcing from farmers</p>
+                    <p>✓ Quality fresh produce</p>
+                    <p>✓ Competitive pricing</p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="sokoOrange" className="w-full" onClick={handleBuyerClick}>
+                      Register as Buyer
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </div>
             </div>
           </div>
         </section>
