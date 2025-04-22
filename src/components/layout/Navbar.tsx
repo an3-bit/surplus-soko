@@ -3,6 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { 
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import { FarmerRegistrationCard } from "../registration/FarmerRegistrationCard";
+import { BuyerRegistrationCard } from "../registration/BuyerRegistrationCard";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,9 +43,21 @@ export function Navbar() {
           </Link>
         </nav>
         <div className="hidden md:flex md:items-center md:space-x-3">
-          <Link to="/join-us">
-            <Button variant="sokoOutlineGreen">Join Us</Button>
-          </Link>
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent">
+                  <Button variant="sokoOutlineGreen">Register</Button>
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <div className="grid grid-cols-2 gap-4 p-4 w-[600px]">
+                    <FarmerRegistrationCard />
+                    <BuyerRegistrationCard />
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
           <Link to="/support">
             <Button variant="sokoGreen">Support</Button>
           </Link>
@@ -67,11 +88,20 @@ export function Navbar() {
                 About
               </Link>
               <div className="flex flex-col space-y-2 pt-3 border-t">
-                <Link to="/join-us">
-                  <Button variant="sokoOutlineGreen" className="w-full" onClick={() => setIsOpen(false)}>Join Us</Button>
+                <Link to="/register/farmer">
+                  <Button variant="sokoOutlineGreen" className="w-full" onClick={() => setIsOpen(false)}>
+                    Register as Farmer
+                  </Button>
+                </Link>
+                <Link to="/register/buyer">
+                  <Button variant="sokoOrange" className="w-full" onClick={() => setIsOpen(false)}>
+                    Register as Buyer
+                  </Button>
                 </Link>
                 <Link to="/support">
-                  <Button variant="sokoGreen" className="w-full" onClick={() => setIsOpen(false)}>Support</Button>
+                  <Button variant="sokoGreen" className="w-full" onClick={() => setIsOpen(false)}>
+                    Support
+                  </Button>
                 </Link>
               </div>
             </nav>
