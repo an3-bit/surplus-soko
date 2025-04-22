@@ -30,12 +30,15 @@ const getSignUpSchema = (includeFullName: boolean) => {
   return signInSchema;
 };
 
-type FormValues = z.infer<ReturnType<typeof getSignUpSchema>>;
-
 export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormProps) {
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const formSchema = mode === "signup" ? getSignUpSchema(includeFullName) : signInSchema;
+
+  // Using a more explicit type definition for the form
+  type FormValues = z.infer<typeof signInSchema> & {
+    fullName?: string;
+  };
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -43,7 +46,7 @@ export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormP
       email: "",
       password: "",
       ...(includeFullName ? { fullName: "" } : {}),
-    } as any, // Using 'any' here to satisfy TypeScript temporarily
+    },
   });
 
   const handleSubmit = async (values: FormValues) => {
@@ -53,8 +56,9 @@ export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormP
       let data = null;
 
       if (mode === "signup") {
-        const metadata = includeFullName && 'fullName' in values 
-          ? { full_name: values.fullName } 
+        // Explicitly type the metadata to ensure full_name is a string
+        const metadata = includeFullName && values.fullName 
+          ? { full_name: values.fullName as string } 
           : undefined;
 
         const result = await signUp(
@@ -106,7 +110,9 @@ export function AuthForm({ mode, onSuccess, includeFullName = false }: AuthFormP
         {includeFullName && mode === "signup" && (
           <FormField
             control={form.control}
-            name="fullName" 
+            // Use 'as any' to bypass TypeScript's form field name checking
+            // since we're using a dynamic schema
+            name={"fullName" as any}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Full Name</FormLabel>
