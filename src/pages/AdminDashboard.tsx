@@ -4,16 +4,26 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-function fetchFarmers() {
-  return supabase.from("farmer_profiles").select("*").then(({ data }) => data);
+async function fetchFarmers() {
+  const { data } = await supabase.from("farmer_profiles").select("*");
+  return data || [];
 }
-function fetchBuyers() {
-  return supabase.from("buyer_profiles").select("*").then(({ data }) => data);
+
+async function fetchBuyers() {
+  const { data } = await supabase.from("buyer_profiles").select("*");
+  return data || [];
 }
 
 export default function AdminDashboard() {
-  const { data: farmers, isLoading: loadingFarmers } = useQuery({ queryKey: ["farmers"], queryFn: fetchFarmers });
-  const { data: buyers, isLoading: loadingBuyers } = useQuery({ queryKey: ["buyers"], queryFn: fetchBuyers });
+  const { data: farmers, isLoading: loadingFarmers } = useQuery({
+    queryKey: ["farmers"],
+    queryFn: fetchFarmers
+  });
+  
+  const { data: buyers, isLoading: loadingBuyers } = useQuery({
+    queryKey: ["buyers"],
+    queryFn: fetchBuyers
+  });
 
   return (
     <div className="container mx-auto py-10">

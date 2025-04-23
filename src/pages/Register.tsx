@@ -7,7 +7,11 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { useNavigate } from "react-router-dom";
 import { Sprout, Store } from "lucide-react";
 
-const Register = () => {
+type RegisterProps = {
+  mode?: "signup" | "signin";
+};
+
+const Register = ({ mode = "signup" }: RegisterProps) => {
   const navigate = useNavigate();
   
   const handleFarmerClick = () => {
