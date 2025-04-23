@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X, LayoutDashboard, LogIn, UserPlus } from "lucide-react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,10 +11,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import { FarmerRegistrationCard } from "../registration/FarmerRegistrationCard";
 import { BuyerRegistrationCard } from "../registration/BuyerRegistrationCard";
-
-const isAdmin = () => {
-  return window.location.search.includes("admin=1");
-};
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,23 +46,17 @@ export function Navbar() {
           <Link to="/login" className="text-sm font-medium flex items-center gap-1 transition-colors hover:text-soko-green">
             <LogIn className="w-4 h-4" /> Login
           </Link>
-          {isAdmin() && (
-            <Link to="/dashboard" className="text-sm font-medium flex items-center gap-1 transition-colors hover:text-soko-green">
-              <LayoutDashboard className="w-4 h-4" /> Dashboard
-            </Link>
-          )}
+         
         </nav>
         <div className="hidden md:flex md:items-center md:space-x-3">
           <Link to="/support">
             <Button variant="sokoGreen">Support</Button>
           </Link>
-          {isAdmin() && (
-            <Link to="/dashboard" className="flex items-center" title="Dashboard">
-              <Button variant="ghost" size="icon">
-                <LayoutDashboard className="h-6 w-6 text-soko-green" />
-              </Button>
-            </Link>
-          )}
+          <Link to="/dashboard" className="flex items-center" title="Dashboard">
+            <Button variant="ghost" size="icon">
+              <LayoutDashboard className="h-6 w-6 text-soko-green" />
+            </Button>
+          </Link>
         </div>
         <div className="md:hidden">
           <Button
@@ -101,11 +91,9 @@ export function Navbar() {
               <Link to="/login" className="text-sm font-medium flex items-center gap-1" onClick={() => setIsOpen(false)}>
                 <LogIn className="w-4 h-4" /> Login
               </Link>
-              {isAdmin() && (
-                <Link to="/dashboard" className="text-sm font-medium flex items-center gap-1" onClick={() => setIsOpen(false)}>
-                  <LayoutDashboard className="w-4 h-4" /> Dashboard
-                </Link>
-              )}
+              <Link to="/dashboard" className="text-sm font-medium flex items-center gap-1" onClick={() => setIsOpen(false)}>
+                <LayoutDashboard className="w-4 h-4" /> Dashboard
+              </Link>
               <div className="flex flex-col space-y-2 pt-3 border-t">
                 <Link to="/support">
                   <Button variant="sokoGreen" className="w-full" onClick={() => setIsOpen(false)}>
