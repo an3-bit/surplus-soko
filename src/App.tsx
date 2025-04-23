@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -16,6 +15,8 @@ import Register from "./pages/Register";
 import RegisterFarmer from "./pages/RegisterFarmer";
 import RegisterBuyer from "./pages/RegisterBuyer";
 import AdminDashboard from "./pages/AdminDashboard";
+import { Navbar } from "./components/layout/Navbar";
+import { Footer } from "./components/layout/Footer";
 
 const queryClient = new QueryClient();
 
