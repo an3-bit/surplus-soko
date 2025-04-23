@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Menu, X, LayoutDashboard, LogIn, UserPlus } from "lucide-react";
 import { useState } from "react";
@@ -47,12 +46,6 @@ export function Navbar() {
           <Link to="/about" className="text-sm font-medium transition-colors hover:text-soko-green">
             About
           </Link>
-          <Link to="/register/farmer" className="text-sm font-medium flex items-center gap-1 transition-colors hover:text-soko-orange">
-            <UserPlus className="w-4 h-4 text-soko-orange" /> Register as Farmer
-          </Link>
-          <Link to="/register/buyer" className="text-sm font-medium flex items-center gap-1 transition-colors hover:text-soko-orange">
-            <UserPlus className="w-4 h-4 text-soko-orange" /> Register as Buyer
-          </Link>
           <Link to="/login" className="text-sm font-medium flex items-center gap-1 transition-colors hover:text-soko-green">
             <LogIn className="w-4 h-4" /> Login
           </Link>
@@ -63,24 +56,17 @@ export function Navbar() {
           )}
         </nav>
         <div className="hidden md:flex md:items-center md:space-x-3">
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="bg-transparent hover:bg-transparent">
-                  <Button variant="sokoOutlineGreen">Register</Button>
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <div className="grid grid-cols-2 gap-4 p-4 w-[600px]">
-                    <FarmerRegistrationCard />
-                    <BuyerRegistrationCard />
-                  </div>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          {/* REMOVED: NavigationMenu for register buttons */}
           <Link to="/support">
             <Button variant="sokoGreen">Support</Button>
           </Link>
+          {isAdmin() && (
+            <Link to="/dashboard" className="flex items-center" title="Dashboard">
+              <Button variant="ghost" size="icon">
+                <LayoutDashboard className="h-6 w-6 text-soko-green" />
+              </Button>
+            </Link>
+          )}
         </div>
         <div className="md:hidden">
           <Button
@@ -109,12 +95,6 @@ export function Navbar() {
               <Link to="/about" className="text-sm font-medium" onClick={() => setIsOpen(false)}>
                 About
               </Link>
-              <Link to="/register/farmer" className="text-sm font-medium flex items-center gap-1" onClick={() => setIsOpen(false)}>
-                <UserPlus className="w-4 h-4 text-soko-orange" /> Register as Farmer
-              </Link>
-              <Link to="/register/buyer" className="text-sm font-medium flex items-center gap-1" onClick={() => setIsOpen(false)}>
-                <UserPlus className="w-4 h-4 text-soko-orange" /> Register as Buyer
-              </Link>
               <Link to="/login" className="text-sm font-medium flex items-center gap-1" onClick={() => setIsOpen(false)}>
                 <LogIn className="w-4 h-4" /> Login
               </Link>
@@ -124,16 +104,7 @@ export function Navbar() {
                 </Link>
               )}
               <div className="flex flex-col space-y-2 pt-3 border-t">
-                <Link to="/register/farmer">
-                  <Button variant="sokoOutlineGreen" className="w-full" onClick={() => setIsOpen(false)}>
-                    Register as Farmer
-                  </Button>
-                </Link>
-                <Link to="/register/buyer">
-                  <Button variant="sokoOrange" className="w-full" onClick={() => setIsOpen(false)}>
-                    Register as Buyer
-                  </Button>
-                </Link>
+                {/* REMOVED: mobile Register as Farmer/Buyer buttons */}
                 <Link to="/support">
                   <Button variant="sokoGreen" className="w-full" onClick={() => setIsOpen(false)}>
                     Support

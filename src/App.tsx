@@ -39,7 +39,23 @@ const App = () => (
           <Route path="/support" element={<Support />} />
           <Route path="/success-stories" element={<SuccessStories />} />
           <Route path="/dashboard" element={<AdminDashboard />} />
-          <Route path="/login" element={<Register mode="signin" />} />
+          <Route
+            path="/login"
+            element={
+              // Login page only shows the sign-in form, no register.
+              <div className="min-h-screen flex flex-col">
+                <Navbar />
+                <main className="flex-1 flex justify-center items-center bg-[#f9fafb]">
+                  <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
+                    <h2 className="text-2xl font-bold text-center mb-8">Sign In</h2>
+                    {/* Only the AuthForm in signin mode, no registration link */}
+                    <Register mode="signin" />
+                  </div>
+                </main>
+                <Footer />
+              </div>
+            }
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

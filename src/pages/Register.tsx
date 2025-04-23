@@ -13,7 +13,7 @@ type RegisterProps = {
 
 const Register = ({ mode = "signup" }: RegisterProps) => {
   const navigate = useNavigate();
-  
+
   const handleFarmerClick = () => {
     navigate("/register/farmer");
   };
@@ -26,10 +26,11 @@ const Register = ({ mode = "signup" }: RegisterProps) => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-1">
-        <div 
-          className="bg-cover bg-center py-16" 
+        <div
+          className="bg-cover bg-center py-16"
           style={{
-            backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.pexels.com/photos/2519484/pexels-photo-2519484.jpeg")',
+            backgroundImage:
+              'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.pexels.com/photos/2519484/pexels-photo-2519484.jpeg")',
           }}
         >
           <div className="container px-4 mx-auto sm:px-6">
@@ -46,9 +47,14 @@ const Register = ({ mode = "signup" }: RegisterProps) => {
           <div className="container px-4 mx-auto sm:px-6">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-2xl font-bold text-center mb-8">Choose your registration type</h2>
-              
-              <div className="grid md:grid-cols-2 gap-8">
-                <Card className="border-2 border-soko-green hover:shadow-lg transition-shadow">
+              {/* Display both cards side by side on all screens ≥md, stacked on mobile */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <Card className="border-2 border-soko-green hover:shadow-lg transition-shadow cursor-pointer"
+                  onClick={handleFarmerClick}
+                  role="button"
+                  tabIndex={0}
+                  onKeyPress={e => { if (e.key === 'Enter') handleFarmerClick(); }}
+                >
                   <CardHeader className="text-center">
                     <Sprout className="w-12 h-12 mx-auto text-soko-green mb-4" />
                     <CardTitle className="text-2xl">Register as Farmer</CardTitle>
@@ -60,13 +66,22 @@ const Register = ({ mode = "signup" }: RegisterProps) => {
                     <p>✓ Real-time market updates</p>
                   </CardContent>
                   <CardFooter>
-                    <Button variant="sokoGreen" className="w-full" onClick={handleFarmerClick}>
+                    <Button
+                      variant="sokoGreen"
+                      className="w-full md:pointer-events-none"
+                      tabIndex={-1}
+                    >
                       Register as Farmer
                     </Button>
                   </CardFooter>
                 </Card>
 
-                <Card className="border-2 border-soko-orange hover:shadow-lg transition-shadow">
+                <Card className="border-2 border-soko-orange hover:shadow-lg transition-shadow cursor-pointer"
+                  onClick={handleBuyerClick}
+                  role="button"
+                  tabIndex={0}
+                  onKeyPress={e => { if (e.key === 'Enter') handleBuyerClick(); }}
+                >
                   <CardHeader className="text-center">
                     <Store className="w-12 h-12 mx-auto text-soko-orange mb-4" />
                     <CardTitle className="text-2xl">Register as Buyer</CardTitle>
@@ -78,7 +93,11 @@ const Register = ({ mode = "signup" }: RegisterProps) => {
                     <p>✓ Competitive pricing</p>
                   </CardContent>
                   <CardFooter>
-                    <Button variant="sokoOrange" className="w-full" onClick={handleBuyerClick}>
+                    <Button
+                      variant="sokoOrange"
+                      className="w-full md:pointer-events-none"
+                      tabIndex={-1}
+                    >
                       Register as Buyer
                     </Button>
                   </CardFooter>
