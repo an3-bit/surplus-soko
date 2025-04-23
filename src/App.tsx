@@ -15,6 +15,7 @@ import JoinUs from "./pages/JoinUs";
 import Register from "./pages/Register";
 import RegisterFarmer from "./pages/RegisterFarmer";
 import RegisterBuyer from "./pages/RegisterBuyer";
+import AdminDashboard from "./pages/AdminDashboard";
 
 const queryClient = new QueryClient();
 
@@ -29,12 +30,16 @@ const App = () => (
           <Route path="/how-it-works" element={<HowItWorks />} />
           <Route path="/impact" element={<Impact />} />
           <Route path="/about" element={<About />} />
-          <Route path="/join-us" element={<JoinUs />} />
+          {/*
+            <Route path="/join-us" element={<JoinUs />} />
+          */}
           <Route path="/register" element={<Register />} />
           <Route path="/register/farmer" element={<RegisterFarmer />} />
           <Route path="/register/buyer" element={<RegisterBuyer />} />
           <Route path="/support" element={<Support />} />
           <Route path="/success-stories" element={<SuccessStories />} />
+          <Route path="/dashboard" element={<AdminDashboard />} />
+          <Route path="/login" element={<Register mode="signin" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

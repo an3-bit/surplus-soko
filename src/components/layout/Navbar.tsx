@@ -1,8 +1,8 @@
 
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, LayoutDashboard, LogIn, UserPlus } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { 
   NavigationMenu,
   NavigationMenuContent,
@@ -12,6 +12,12 @@ import {
 } from "@/components/ui/navigation-menu";
 import { FarmerRegistrationCard } from "../registration/FarmerRegistrationCard";
 import { BuyerRegistrationCard } from "../registration/BuyerRegistrationCard";
+
+// Dummy admin check. Replace with real auth check if you have admin logic!
+const isAdmin = () => {
+  // In real app, check user roles here
+  return window.location.search.includes("admin=1");
+};
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,6 +47,20 @@ export function Navbar() {
           <Link to="/about" className="text-sm font-medium transition-colors hover:text-soko-green">
             About
           </Link>
+          <Link to="/register/farmer" className="text-sm font-medium flex items-center gap-1 transition-colors hover:text-soko-orange">
+            <UserPlus className="w-4 h-4 text-soko-orange" /> Register as Farmer
+          </Link>
+          <Link to="/register/buyer" className="text-sm font-medium flex items-center gap-1 transition-colors hover:text-soko-orange">
+            <UserPlus className="w-4 h-4 text-soko-orange" /> Register as Buyer
+          </Link>
+          <Link to="/login" className="text-sm font-medium flex items-center gap-1 transition-colors hover:text-soko-green">
+            <LogIn className="w-4 h-4" /> Login
+          </Link>
+          {isAdmin() && (
+            <Link to="/dashboard" className="text-sm font-medium flex items-center gap-1 transition-colors hover:text-soko-green">
+              <LayoutDashboard className="w-4 h-4" /> Dashboard
+            </Link>
+          )}
         </nav>
         <div className="hidden md:flex md:items-center md:space-x-3">
           <NavigationMenu>
@@ -62,15 +82,17 @@ export function Navbar() {
             <Button variant="sokoGreen">Support</Button>
           </Link>
         </div>
-
         <div className="md:hidden">
-          <Button variant="ghost" size="icon" onClick={() => setIsOpen(!isOpen)}>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsOpen(!isOpen)}
+          >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             <span className="sr-only">Toggle menu</span>
           </Button>
         </div>
       </div>
-
       {isOpen && (
         <div className="md:hidden border-t">
           <div className="container px-4 py-3 mx-auto sm:px-6">
@@ -87,6 +109,20 @@ export function Navbar() {
               <Link to="/about" className="text-sm font-medium" onClick={() => setIsOpen(false)}>
                 About
               </Link>
+              <Link to="/register/farmer" className="text-sm font-medium flex items-center gap-1" onClick={() => setIsOpen(false)}>
+                <UserPlus className="w-4 h-4 text-soko-orange" /> Register as Farmer
+              </Link>
+              <Link to="/register/buyer" className="text-sm font-medium flex items-center gap-1" onClick={() => setIsOpen(false)}>
+                <UserPlus className="w-4 h-4 text-soko-orange" /> Register as Buyer
+              </Link>
+              <Link to="/login" className="text-sm font-medium flex items-center gap-1" onClick={() => setIsOpen(false)}>
+                <LogIn className="w-4 h-4" /> Login
+              </Link>
+              {isAdmin() && (
+                <Link to="/dashboard" className="text-sm font-medium flex items-center gap-1" onClick={() => setIsOpen(false)}>
+                  <LayoutDashboard className="w-4 h-4" /> Dashboard
+                </Link>
+              )}
               <div className="flex flex-col space-y-2 pt-3 border-t">
                 <Link to="/register/farmer">
                   <Button variant="sokoOutlineGreen" className="w-full" onClick={() => setIsOpen(false)}>
