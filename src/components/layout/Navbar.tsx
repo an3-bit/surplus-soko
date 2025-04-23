@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, LayoutDashboard, LogIn, UserPlus } from "lucide-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { 
+import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
@@ -12,9 +12,7 @@ import {
 import { FarmerRegistrationCard } from "../registration/FarmerRegistrationCard";
 import { BuyerRegistrationCard } from "../registration/BuyerRegistrationCard";
 
-// Dummy admin check. Replace with real auth check if you have admin logic!
 const isAdmin = () => {
-  // In real app, check user roles here
   return window.location.search.includes("admin=1");
 };
 
@@ -46,6 +44,9 @@ export function Navbar() {
           <Link to="/about" className="text-sm font-medium transition-colors hover:text-soko-green">
             About
           </Link>
+          <Link to="/register" className="text-sm font-medium flex items-center gap-1 transition-colors hover:text-soko-green">
+            <UserPlus className="w-4 h-4" /> Register
+          </Link>
           <Link to="/login" className="text-sm font-medium flex items-center gap-1 transition-colors hover:text-soko-green">
             <LogIn className="w-4 h-4" /> Login
           </Link>
@@ -56,7 +57,6 @@ export function Navbar() {
           )}
         </nav>
         <div className="hidden md:flex md:items-center md:space-x-3">
-          {/* REMOVED: NavigationMenu for register buttons */}
           <Link to="/support">
             <Button variant="sokoGreen">Support</Button>
           </Link>
@@ -95,6 +95,9 @@ export function Navbar() {
               <Link to="/about" className="text-sm font-medium" onClick={() => setIsOpen(false)}>
                 About
               </Link>
+              <Link to="/register" className="text-sm font-medium flex items-center gap-1" onClick={() => setIsOpen(false)}>
+                <UserPlus className="w-4 h-4" /> Register
+              </Link>
               <Link to="/login" className="text-sm font-medium flex items-center gap-1" onClick={() => setIsOpen(false)}>
                 <LogIn className="w-4 h-4" /> Login
               </Link>
@@ -104,7 +107,6 @@ export function Navbar() {
                 </Link>
               )}
               <div className="flex flex-col space-y-2 pt-3 border-t">
-                {/* REMOVED: mobile Register as Farmer/Buyer buttons */}
                 <Link to="/support">
                   <Button variant="sokoGreen" className="w-full" onClick={() => setIsOpen(false)}>
                     Support
